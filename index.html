@@ -57,7 +57,7 @@
       align-items: center;
     }
 
-    /* Стил за бутоните - напълно съвпадащ с менюто */
+    /* Стил за бутоните - съвпадащ с менюто */
     .main-btn, .modal-btn {
       width: 100%;
       background-color: #f7c5e5;
@@ -78,7 +78,7 @@
       background-color: #f2a8d8;
     }
 
-    /* Изскачащи прозорци (Modal) - мачват визията на менюто */
+    /* Изскачащи прозорци (Modal) */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -128,7 +128,7 @@
       font-weight: bold;
     }
 
-    /* Поле за въвеждане */
+    /* Поле за въвеждане на номер */
     .phone-input {
       width: 100%;
       background-color: #fff;
@@ -178,7 +178,7 @@
       <div id="form-container" style="width: 100%;">
         <div class="modal-title" style="margin-bottom: 15px;">Телефон за връзка</div>
         <form onsubmit="sendBooking(event)">
-          <input type="text" id="user-phone" class="phone-input" placeholder="Въведете тук..." required>
+          <input type="tel" id="user-phone" class="phone-input" placeholder="08X XXX XXXX" required>
           <button type="submit" class="modal-btn">Изпращане</button>
         </form>
       </div>
@@ -231,7 +231,7 @@
 
     function sendBooking(event) {
       event.preventDefault();
-      const userText = document.getElementById('user-phone').value;
+      const phone = document.getElementById('user-phone').value;
 
       fetch("https://formsubmit.co/ajax/desidesi22224@gmail.com", {
         method: "POST",
@@ -240,7 +240,8 @@
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          "Ново съобщение от D STYLE": userText
+          "_subject": "Поиск за подстригване",
+          "Номер": phone
         })
       })
       .then(response => response.json())
